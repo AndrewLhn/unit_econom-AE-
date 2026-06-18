@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ source('raw', 'user_deposits') }}  -- было 'public', 'raw_source_user_deposits'
+    select * from {{ source('raw', 'user_deposits') }}  
 )
 
 select

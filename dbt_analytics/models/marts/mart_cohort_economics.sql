@@ -18,19 +18,15 @@ SELECT
     users,
     total_deposits,
     total_cac, 
-    -- Расчет Contribution Margin (CM)
     (total_deposits - total_cac - total_platform_cost) AS contribution_margin,
-    -- Процент маржинальности
     ROUND(
         (((total_deposits - total_cac - total_platform_cost) / NULLIF(total_deposits, 0)) * 100)::numeric, 
         2
     ) AS margin_percentage,
-    -- Расчет ROI для совместимости с тестом dbt (Маржа / CAC * 100)
     ROUND(
         (((total_deposits - total_cac - total_platform_cost) / NULLIF(total_cac, 0)) * 100)::numeric, 
         2
     ) AS roi,
-    -- CM на одного пользователя
     ROUND(
         ((total_deposits - total_cac - total_platform_cost) / NULLIF(users, 0))::numeric, 
         2
