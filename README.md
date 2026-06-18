@@ -1,0 +1,1 @@
+./venv/bin/dbt build --project-dir dbt_analytics --profiles-dir dbt_analytics
