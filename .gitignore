@@ -1,0 +1,15 @@
+.pgdata/
+data/
+logs/
+venv/
+*.pyc
+__pycache__/
+dbt_analytics/target/
+dbt_analytics/dbt_packages/
+dbt_analytics/logs/
+profiles.yml
+.env
+*.env.[a-zA-Z0-9]*
+!*.env.example
+.DS_Store
+Thumbs.db

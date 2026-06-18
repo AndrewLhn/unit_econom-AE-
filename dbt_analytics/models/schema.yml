@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_user_deposits
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: first_deposit_date
+        tests:
+          - not_null
+
+  - name: mart_cohort_economics
+    columns:
+      - name: total_cac
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+      - name: users
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+      - name: roi
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -1.0
+              max_value: 100.0 
+
+  - name: mart_geo_economics
+    description: >
+      УВАГА: Ця вітрина містить виключно дохідну частину (revenue-only). 
+      Витрати на маркетинг (CAC/Spend) наразі не атрибутуються по країнах. 
+      Не використовувати для прийняття рішень щодо рентабельності регіонів або перерозподілу бюджетів.
